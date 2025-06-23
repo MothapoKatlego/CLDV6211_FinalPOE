@@ -1,0 +1,77 @@
+﻿@model KatEventPlan.Models.Venue
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Venue</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.Venue_Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Venue_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Venue_Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Venue_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Location, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Capacity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Capacity, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="form-group">
+            <label class="control-label col-md-2">Upload Image</label>
+            <div class="col-md-10">
+                <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(this)" />
+                <br />
+
+                <!-- Image Preview -->
+                @{
+                    var imageUrl = $"https://kateventstorage.blob.core.windows.net/kateventpictures/venue_{Model.Venue_Id}.jpg";
+                }
+
+                <img id="preview" src="@imageUrl" alt="Image Preview" style="max-width: 300px; display:@(Model.Venue_Id > 0 ? "block" : "none");" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('preview');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}    
+}

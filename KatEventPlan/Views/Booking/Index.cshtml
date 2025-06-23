@@ -1,0 +1,46 @@
+﻿@model IEnumerable<KatEventPlan.Models.Booking>
+
+@{
+    ViewBag.Title = "Bookings";
+}
+
+<h2>Bookings</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Bookings", FormMethod.Get))
+{
+    <p>
+        Search by Event or Venue name:
+        <input type="text" name="searchString" value="@Request.QueryString["searchString"]" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Event.Event_Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Venue.Venue_Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Booking_Date)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Event.Event_Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Venue.Venue_Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Booking_Date)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Booking_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Booking_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Booking_Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

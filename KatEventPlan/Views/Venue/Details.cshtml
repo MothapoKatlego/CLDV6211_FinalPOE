@@ -1,0 +1,52 @@
+﻿@model KatEventPlan.Models.Venue
+@{
+    ViewBag.Title = "Details";
+    var images = ViewBag.Images as List<string>;
+    int imageIndex = 0;
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Venue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Capacity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Capacity)
+        </dd>
+
+        <dt>Image</dt>
+        <dd>
+            @if (images != null && images.Count > 0)
+            {
+                <img src="@images[imageIndex]" alt="Venue Image" style="max-width: 300px;" />
+            }
+            else
+            {
+                <span>No image available</span>
+            }
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Venue_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "NHHFIRWJc/A=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lab_services_student\\Documents\\CLDV6211_FinalPart\\KatlegoEventApp\\KatlegoEventApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lab_services_student\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.200\\microsoft.net.sdk.compilers.toolset.9.0.200.nupkg.sha512"
+  ],
+  "logs": []
+}

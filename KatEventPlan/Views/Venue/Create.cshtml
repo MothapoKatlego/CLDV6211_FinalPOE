@@ -1,0 +1,33 @@
+﻿@model KatEventPlan.Models.Venue
+
+@{
+    ViewBag.Title = "Create Venue";
+}
+
+<h2>Create Venue</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Venue_Name)
+            @Html.TextBoxFor(m => m.Venue_Name, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Location)
+            @Html.TextBoxFor(m => m.Location, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Capacity)
+            @Html.TextBoxFor(m => m.Capacity, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Upload Image</label>
+            <input type="file" name="imageFile" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+}

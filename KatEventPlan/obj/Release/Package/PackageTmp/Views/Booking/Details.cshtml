@@ -1,0 +1,42 @@
+﻿@model KatEventPlan.Models.Booking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.Event_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.Event_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue.Venue_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue.Venue_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Booking_Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Booking_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

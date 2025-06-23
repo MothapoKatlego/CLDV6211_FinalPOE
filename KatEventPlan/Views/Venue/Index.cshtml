@@ -1,0 +1,59 @@
+﻿@model IEnumerable<KatEventPlan.Models.Venue>
+
+
+@{
+    ViewBag.Title = "Venues";
+}
+
+<h2>Venues</h2>
+
+<!-- 🔍 Search Form -->
+@using (Html.BeginForm("Index", "Venue", FormMethod.Get))
+{
+    <p>
+        Search by Name or Location:
+        @Html.TextBox("searchString", Request.QueryString["searchString"], new { @class = "form-control", style = "width: 300px; display: inline;" })
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Capacity</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Venue_Name</td>
+                <td>@item.Location</td>
+                <td>@item.Capacity</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image_Url))
+                    {
+                        <img src="@item.Image_Url" alt="Image" style="max-height:100px;" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Venue_Id }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Venue_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Venue_Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
